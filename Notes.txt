@@ -1,0 +1,36 @@
+Current Build 0
+
+10/27/2011
+
+ToDo
+	-Finish docs
+	-Inline Class in GameView for Input Data
+
+Changes
+	Stats.java
+		Created
+			-easy was to access the avatar stats
+		Added runSpeed, attackSpeed, health, mana, damage
+			-elematary stats for a rpg
+		
+	GameView.java
+		Tweaks
+			Using GestureEvent onDown() -> onSingleTap
+				-made Touch more responsive
+				
+
+	Avatar.java
+		Features
+			[AvatarMoveInrpt] added new condition (if ) new inputLoc doesn't match destination 
+			for reseting path
+				-Avatar able to interrupt current move order and move to new location 
+			
+		Renames
+			<Refactored> Unit class -> Avatar
+				-Single only one player is used Avatar is more appropriate
+		
+			
+	MoveComponent.java
+		Renames
+			[baseTocurrSpeed] _baseSpeed -> _currentSpeed
+				-in case buffs modify the speed
