@@ -1,6 +1,7 @@
 package com.gpelayo.app.gawalaro.gameObjects;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
 
 public class Avatar extends BaseGameObject{
 	static final float UNIT_WIDTH = 25;
@@ -8,22 +9,17 @@ public class Avatar extends BaseGameObject{
 	
 	public Avatar(Coordinate spawnLocation)
 	{
-		_location = spawnLocation;
-		
-		baseStats.runSpeed = 5;
-		
-		resetStats();
-		_gameComponents.add(new DashComponent(this));
+		super(spawnLocation);
+		brush.setColor(Color.WHITE);
+		_gameComponents.add(new TiltMoveComponent(this));
 	}
 	
 	@Override
 	public void draw(Canvas g) {
-		//g.drawColor(Color.BLACK);
 		for(GameComponent iGameComponent : _gameComponents)	{
 			iGameComponent.drawEffect(g);
 		}
 		
-		g.drawRect(_location.getFloatX(), _location.getFloatY(), _location.getFloatX() + UNIT_WIDTH/2, _location.getFloatY() + UNIT_HEIGHT/2, brush);
-		
+		g.drawRect(location.getFloatX(), location.getFloatY(), location.getFloatX() + UNIT_WIDTH/2, location.getFloatY() + UNIT_HEIGHT/2, brush);
 	}
 }

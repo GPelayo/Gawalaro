@@ -5,33 +5,32 @@
 
 package com.gpelayo.app.gawalaro;
 
-import com.gpelayo.app.gawalaro.gameObjects.TouchInputManager;
-
 import android.content.Context;
 import android.graphics.*;
 import android.opengl.GLSurfaceView;
 import android.util.AttributeSet;
-import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 
 public class GameView extends GLSurfaceView implements SurfaceHolder.Callback {
-    public GameManager _engine;
-    //private Bitmap background;
-    private GestureDetector _gestureDectector;
-    
+    public GameManager _gameManager;
+    private Bitmap background;
+    private boolean isStopped = true; 
     public boolean onTouchEvent(MotionEvent evt)
     {
-    	_gestureDectector.onTouchEvent(evt);
+    	_gameManager.resetObjectLocations();
+    	if(isStopped)	{
+    		//_gameManager.startThreads();
+    		isStopped = false;
+    	}
     	return true;
     }
     
     public GameView(Context context) {
 		super(context);
 		initGameObjects();
-		initInputs();
 	}
-
+    
 	public GameView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		initGameObjects();
@@ -40,27 +39,24 @@ public class GameView extends GLSurfaceView implements SurfaceHolder.Callback {
     private void initGameObjects()
     {
     	//add and load graphics
-    	_engine = new GameManager(this);
-    }
-    
-    private void initInputs()
-    {
-    	_gestureDectector = new GestureDetector(new TouchInputManager());
+    	_gameManager = new GameManager(this);
     }
     
     public void doDraw(Canvas canvas) {
-		_engine.drawForeground(canvas);
+		_gameManager.drawForeground(canvas);
+		_gameManager.drawDebugDisplay(canvas);
 	}
     
 	public void surfaceChanged(SurfaceHolder holder, int format, int width,
 			int height) {
+		_gameManager.startThreads();
 		//resize background
-		
 		//initialize screen dimension based varibles in manager
 	}
 	
 	public void surfaceCreated(SurfaceHolder holder) {
 		//initialize screen dimension based varibles in engine
+    	
 	}
 	
 	public void surfaceDestroyed(SurfaceHolder holder) {

@@ -10,16 +10,22 @@ public abstract class BaseGameObject{
 	public Stats currentStats =  new Stats();;
 	public Paint brush = new Paint();
 	public boolean isDebug = false;	
+	public Coordinate location, spawnLocation;
 	
-    protected Coordinate _location;
     protected boolean isOutOfPlay = false;
     protected boolean isVisible = true;
     protected String _id;
     protected ArrayList<GameComponent> _gameComponents = new ArrayList<GameComponent>();
     protected OFF_GameObjectStatus currentObjectStatus = new OFF_GameObjectStatus(); 
     
-    public boolean isCondemned()
-    {
+    public BaseGameObject(Coordinate spawnLocation)	{
+		location = spawnLocation;
+		this.spawnLocation = spawnLocation;
+		baseStats.runSpeed = 1;		
+		resetStats();
+	}
+    
+    public boolean isCondemned()    {
         return isOutOfPlay;
     }
     
@@ -29,14 +35,6 @@ public abstract class BaseGameObject{
     
     public void setId(String id) {
         this._id = id;
-    }   
-    
-    public Coordinate getLocation() {
-        return _location;
-    }
-
-    public void setLocation(Coordinate location) {
-        this._location = location;
     }
     
     public boolean getVisibility() {
@@ -64,6 +62,11 @@ public abstract class BaseGameObject{
     public void addGameComponent(GameComponent newGameComponent)
     {
     	_gameComponents.add(newGameComponent);
+    }
+    
+    public void resetToSpawnLocation()
+    {
+    	this.location = spawnLocation;
     }
     
     public void update()

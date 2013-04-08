@@ -2,16 +2,30 @@
 package com.gpelayo.app.gawalaro;
 
 import android.app.Activity;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
+
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
 public class GawalaroActivity extends Activity {
+	private SensorManager _sensorManager;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
-        initDisplay();
+        initDisplay();        
+        _sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE); 
+    }
+    
+    @Override
+    public void onResume()
+    {
+    	super.onResume();
+    	_sensorManager.registerListener( new TiltInputManager(), 
+    			_sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
+    			SensorManager.SENSOR_DELAY_NORMAL);
     }
     
     public void initDisplay()
@@ -19,7 +33,7 @@ public class GawalaroActivity extends Activity {
     	this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
     	this.requestWindowFeature(Window.FEATURE_NO_TITLE);
     	//Must be before app is in fullscreen but before the GameView since it uses these global vars.
-		GlobalDisplayVariables.intializeSize(this); 
+		GlobalDisplayVariables.intializeSize(this);
     	GameView gameDisplay = new GameView(this);
     	gameDisplay.setRenderer(new GameRenderer());
         setContentView(gameDisplay);
