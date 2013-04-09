@@ -5,56 +5,51 @@
 
 package com.gpelayo.app.gawalaro;
 
-
 import android.content.Context;
 import android.graphics.*;
 import android.opengl.GLSurfaceView;
 import android.util.AttributeSet;
-import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 
 public class GameView extends GLSurfaceView implements SurfaceHolder.Callback {
-    public GameManager gameManager;
- //   private Bitmap background;
-    private GestureDetector gestureDectector;
-    
+    public GameManager _gameManager;
+    private Bitmap background;
+    private boolean isStopped = true; 
     public boolean onTouchEvent(MotionEvent evt)
     {
-    	this.gestureDectector.onTouchEvent(evt);
+    	_gameManager.resetObjectLocations();
+    	if(isStopped)	{
+    		//_gameManager.startThreads();
+    		isStopped = false;
+    	}
     	return true;
     }
     
     public GameView(Context context) {
 		super(context);
-		this.initGameObjects();
-		this.initInputs();
+		initGameObjects();
 	}
     
 	public GameView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		this.initGameObjects();
-		this.initInputs();
+		initGameObjects();
 	}
 	
-    private void initGameObjects()    {
-    	//add and load graphics
-    	this.gameManager = new GameManager(this);
-    }
-    
-    private void initInputs()
+    private void initGameObjects()
     {
-    	this.gestureDectector = new GestureDetector(new TouchInputManager());
+    	//add and load graphics
+    	_gameManager = new GameManager(this);
     }
     
     public void doDraw(Canvas canvas) {
-		this.gameManager.drawForeground(canvas);
-		this.gameManager.drawDebugDisplay(canvas);
+		_gameManager.drawForeground(canvas);
+		_gameManager.drawDebugDisplay(canvas);
 	}
     
 	public void surfaceChanged(SurfaceHolder holder, int format, int width,
 			int height) {
-		this.gameManager.startThreads();
+		_gameManager.startThreads();
 		//resize background
 		//initialize screen dimension based varibles in manager
 	}

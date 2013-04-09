@@ -1,6 +1,6 @@
-package com.gpelayo.app.gawalaro;
+package com.gpelayo.app.gawalaro.gameObjects;
 
-import com.gpelayo.app.gawalaro.gameObjects.Coordinate;
+
 
 import android.view.MotionEvent;
 import android.view.GestureDetector.SimpleOnGestureListener;

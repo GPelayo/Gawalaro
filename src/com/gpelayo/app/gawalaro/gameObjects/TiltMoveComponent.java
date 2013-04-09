@@ -9,16 +9,16 @@ public class TiltMoveComponent extends GameComponent	{
 	private int movementSpeed;
 	
     public TiltMoveComponent(BaseGameObject parent)	{
-    	this.parent = parent;
-		this.movementSpeed = this.parent.currentStats.runSpeed;
+    	this._parent = parent;
+		this.movementSpeed = this._parent.currentStats.runSpeed;
 	}
 	
 	@Override
 	public void update() {
 		if(TiltInputManager.accelormenterValues != null)	{
-			float newX = this.parent.location.x + this.movementSpeed * (-1*TiltInputManager.accelormenterValues[0]);
-			float newY = this.parent.location.y + this.movementSpeed * TiltInputManager.accelormenterValues[1];
-			this.parent.location = new Coordinate(newX, newY);
+			float newX = this._parent.location.x + this.movementSpeed * (-1*TiltInputManager.accelormenterValues[0]);
+			float newY = this._parent.location.y + this.movementSpeed * TiltInputManager.accelormenterValues[1];
+			this._parent.location = new Coordinate(newX, newY);
 		}
 	}	
 	
