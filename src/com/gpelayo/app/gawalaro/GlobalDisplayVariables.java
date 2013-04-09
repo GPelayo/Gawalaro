@@ -11,7 +11,7 @@ public class GlobalDisplayVariables {
 	public static float screenWidthRatio, screenHeightRatio; 
 	public static float screenHeight, screenWidth;
 	
-	private static Display _display;
+	private static Display display;
 	
 	public GlobalDisplayVariables(Activity activity)
 	{
@@ -20,11 +20,11 @@ public class GlobalDisplayVariables {
 	
 	public static void intializeSize(Activity activity) 
 	{
-		_display = activity.getWindowManager().getDefaultDisplay();
-		screenWidthRatio = _display.getHeight()/BASE_RESOLUTION_Y;
-		screenHeightRatio = _display.getWidth()/BASE_RESOLUTION_X;
-		screenHeight = _display.getHeight();
-		screenWidth = _display.getWidth();
+		display = activity.getWindowManager().getDefaultDisplay();
+		screenWidthRatio = display.getHeight()/BASE_RESOLUTION_Y;
+		screenHeightRatio = display.getWidth()/BASE_RESOLUTION_X;
+		screenHeight = display.getHeight();
+		screenWidth = display.getWidth();
 	}
 	
 	public static float getMiddlePointX()

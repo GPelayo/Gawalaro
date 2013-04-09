@@ -5,24 +5,22 @@ import android.graphics.*;
 
 
 public abstract class BaseGameObject{
-	protected Stats baseStats =  new Stats();
-	
 	public Stats currentStats =  new Stats();;
 	public Paint brush = new Paint();
 	public boolean isDebug = false;	
 	public Coordinate location, spawnLocation;
 	
+	protected Stats baseStats =  new Stats();
     protected boolean isOutOfPlay = false;
     protected boolean isVisible = true;
-    protected String _id;
-    protected ArrayList<GameComponent> _gameComponents = new ArrayList<GameComponent>();
-    protected OFF_GameObjectStatus currentObjectStatus = new OFF_GameObjectStatus(); 
+    protected String id;
+    protected ArrayList<GameComponent> gameComponents = new ArrayList<GameComponent>();
+    protected GameObjectStatus currentObjectStatus = new GameObjectStatus(); 
     
     public BaseGameObject(Coordinate spawnLocation)	{
-		location = spawnLocation;
+		this.location = spawnLocation;
 		this.spawnLocation = spawnLocation;
-		baseStats.runSpeed = 1;		
-		resetStats();
+		this.resetStats();
 	}
     
     public boolean isCondemned()    {
@@ -30,11 +28,11 @@ public abstract class BaseGameObject{
     }
     
     public String getId() {
-        return _id;
+        return id;
     }
     
     public void setId(String id) {
-        this._id = id;
+        this.id = id;
     }
     
     public boolean getVisibility() {
@@ -45,15 +43,13 @@ public abstract class BaseGameObject{
         this.isVisible = isVisible;
     }
     
-    public void resetStats()
-	{
-		currentStats = baseStats;
-		currentObjectStatus.reset();
+    public void resetStats()	{
+		this.currentStats = this.baseStats;
+		this.currentObjectStatus.reset();
 	}
     
-    public void drawIfVisible(Canvas g)
-    {
-        if(isVisible)
+    public void drawIfVisible(Canvas g)   {
+        if(this.isVisible)
         {
             draw(g);
         }
@@ -61,7 +57,7 @@ public abstract class BaseGameObject{
     
     public void addGameComponent(GameComponent newGameComponent)
     {
-    	_gameComponents.add(newGameComponent);
+    	this.gameComponents.add(newGameComponent);
     }
     
     public void resetToSpawnLocation()
@@ -71,9 +67,9 @@ public abstract class BaseGameObject{
     
     public void update()
     {
-    	for(GameComponent iGameComponent : _gameComponents)
+    	for(GameComponent _gameComponent : this.gameComponents)
     	{
-    		iGameComponent.update();
+    		_gameComponent.update();
     	}
     }
     

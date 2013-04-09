@@ -1,17 +1,18 @@
 package com.gpelayo.app.gawalaro;
 
+
 import android.graphics.Canvas;
 
 public class GameThread extends Thread {
 	public boolean isThreadEnabled;
 	
-	private GameView thisDartView;
-	private GameManager _engine;
+	private GameView dartView;
+	private GameManager engine;
 	
 	public GameThread(GameView dartView, GameManager engine) {
-		thisDartView = dartView;
-		isThreadEnabled = true;
-		_engine = engine;
+		this.dartView = dartView;
+		this.isThreadEnabled = true;
+		this.engine = engine;
 	}
 	
 	@Override
@@ -20,19 +21,19 @@ public class GameThread extends Thread {
 		{
 			if(isThreadEnabled)
 			{
-				_engine.updateObjects();
+				this.engine.updateObjects();
 				Canvas c = null;
 				try {
-					c = thisDartView.getHolder().lockCanvas(null);
-					synchronized (thisDartView) {
+					c = this.dartView.getHolder().lockCanvas(null);
+					synchronized (this.dartView) {
 						if(c != null)
 						{
-							thisDartView.doDraw(c);
+							this.dartView.doDraw(c);
 						}
 					}
 				} finally {
 					if (c != null) {
-						thisDartView.getHolder().unlockCanvasAndPost(c);
+						this.dartView.getHolder().unlockCanvasAndPost(c);
 					}
 				}
 			}

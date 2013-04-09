@@ -24,15 +24,15 @@ public class GameManager{
 	public GameManager(GameView gameView)
 	{
 		this.gameObjects = new ArrayList<BaseGameObject>();
-		initGameObjects();
+		this.initGameObjects();
 		this.gameThread = new GameThread(gameView, this);
 	}
 	
     public void drawForeground(Canvas g)    {
     	g.drawColor(Color.BLACK);
     	
-    	for(BaseGameObject iGameObject : gameObjects)	{
-    		iGameObject.draw(g);
+    	for(BaseGameObject _gameObject : this.gameObjects)	{
+    		_gameObject.draw(g);
     	} 
     }
     
@@ -47,14 +47,14 @@ public class GameManager{
     	if(TiltInputManager.geomagneticMatrix != null
     		&&	TiltInputManager.accelormenterValues != null)    	{
     		orientValues = TiltInputManager.accelormenterValues;
-    		StringBuilder m_stringBuilder = new StringBuilder();
-    		m_stringBuilder.append("X: ");
-    		m_stringBuilder.append(new DecimalFormat("#.##").format(orientValues[0]));
-    		m_stringBuilder.append(" Y: ");
-    		m_stringBuilder.append(new DecimalFormat("#.##").format(orientValues[1]));
-    		m_stringBuilder.append(" Z: ");
-    		m_stringBuilder.append(new DecimalFormat("#.##").format(orientValues[2]));
-    		accelStatus = m_stringBuilder.toString();
+    		StringBuilder stringBuilder = new StringBuilder();
+    		stringBuilder.append("X: ");
+    		stringBuilder.append(new DecimalFormat("#.##").format(orientValues[0]));
+    		stringBuilder.append(" Y: ");
+    		stringBuilder.append(new DecimalFormat("#.##").format(orientValues[1]));
+    		stringBuilder.append(" Z: ");
+    		stringBuilder.append(new DecimalFormat("#.##").format(orientValues[2]));
+    		accelStatus = stringBuilder.toString();
     	}
     	
     	g.drawText(accelStatus, SENSOR_STATUS_DEBUG_TEXT_LOC_X, SENSOR_STATUS_DEBUG_TEXT_LOC_Y, debugTextPaint); 
@@ -62,48 +62,28 @@ public class GameManager{
     
     public void updateObjects()
     {
-    	for(BaseGameObject iGameObject : gameObjects)
+    	for(BaseGameObject _gameObject : this.gameObjects)
     	{
-    		iGameObject.update();
+    		_gameObject.update();
     	}
     }
     
     public void resetObjectLocations()
     {
-    	for(BaseGameObject iGameObject : gameObjects)
+    	for(BaseGameObject _gameObject : this.gameObjects)
     	{
-    		iGameObject.resetToSpawnLocation();
+    		_gameObject.resetToSpawnLocation();
     	}
     }
     
     public void initGameObjects()
     {
     	Avatar testUnit = new Avatar(new Coordinate(AVATAR_SPAWN_LOCATION_X, AVATAR_SPAWN_LOCATION_Y));
-    	gameObjects.add(testUnit);
+    	this.gameObjects.add(testUnit);
     }
     
     public void startThreads()
     {
 		this.gameThread.start();
     }
-/*    
-    private void safetlyAddGameObjectToArray(GameObject newElement, GameObject[] array)
-    {
-    	boolean noVacantElements = true;
-		
-		for(int index = 0; (index < array.length)&&noVacantElements; index++)
-        {
-			if((array[index] == null)||(array[index].isCondemned()))
-			{
-				array[index] = newElement;
-				noVacantElements = false;
-			}
-        }
-		
-		if(noVacantElements)
-		{
-			array[0] = newElement;
-		}
-    }
-*/
 }

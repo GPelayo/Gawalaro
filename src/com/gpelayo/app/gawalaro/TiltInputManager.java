@@ -3,8 +3,8 @@ package com.gpelayo.app.gawalaro;
 import android.hardware.*;
 
 public class TiltInputManager implements SensorEventListener{
-	static public float[] accelormenterValues, geomagneticMatrix;
-	static public boolean isReady = false;
+	public static float[] accelormenterValues, geomagneticMatrix;
+	public static boolean isReady = false;
 	
 	public void onAccuracyChanged(Sensor sensor, int accuracy) {
 		// TODO Auto-generated method stub

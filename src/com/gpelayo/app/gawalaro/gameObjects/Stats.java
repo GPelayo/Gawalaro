@@ -1,9 +1,9 @@
 package com.gpelayo.app.gawalaro.gameObjects;
 
 public class Stats {
-	public int runSpeed;
-	public int attackSpeed;
-	public int damage;
-	public int health;
-	public int mana;
+	public int runSpeed = 1;
+	public int attackSpeed = 1;
+	public int damage = 1;
+	public int health = 1;
+	public int mana = 1;
 }

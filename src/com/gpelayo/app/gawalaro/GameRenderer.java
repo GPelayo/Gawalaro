@@ -5,10 +5,7 @@ import javax.microedition.khronos.opengles.GL10;
 
 import android.opengl.*;
 
-public class GameRenderer implements GLSurfaceView.Renderer{
-
-	
-	
+public class GameRenderer implements GLSurfaceView.Renderer{	
 	public void onDrawFrame(GL10 gl) {
 		gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
 		
