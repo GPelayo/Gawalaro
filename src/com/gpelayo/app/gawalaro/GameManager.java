@@ -1,11 +1,17 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.gpelayo.app.gawalaro;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-import com.gpelayo.app.gawalaro.gameobjects.*;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 
-import android.graphics.*;
+import com.gpelayo.app.gawalaro.gameobjects.*;
 
 public class GameManager{
 	static final float AVATAR_SPAWN_LOCATION_X = GlobalDisplayVariables.getMiddlePointX();

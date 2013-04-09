@@ -1,4 +1,5 @@
 package com.gpelayo.app.gawalaro;
+
 import javax.microedition.khronos.opengles.GL10;
 
 import android.opengl.*;
