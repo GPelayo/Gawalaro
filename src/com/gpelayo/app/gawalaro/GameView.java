@@ -5,25 +5,22 @@
 
 package com.gpelayo.app.gawalaro;
 
-
 import android.content.Context;
-import android.graphics.*;
+import android.graphics.Canvas;
 import android.opengl.GLSurfaceView;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
+import android.view.GestureDetector.OnGestureListener;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 
-public class GameView extends GLSurfaceView implements SurfaceHolder.Callback {
+import com.gpelayo.app.gawalaro.R;
+import com.gpelayo.app.gawalaro.R.drawable;
+
+public class GameView extends GLSurfaceView implements SurfaceHolder.Callback{
     public GameManager gameManager;
  //   private Bitmap background;
-    private GestureDetector gestureDectector;
-    
-    public boolean onTouchEvent(MotionEvent evt)
-    {
-    	this.gestureDectector.onTouchEvent(evt);
-    	return true;
-    }
+    private GestureDetector gestureDectector; 
     
     public GameView(Context context) {
 		super(context);
@@ -38,13 +35,16 @@ public class GameView extends GLSurfaceView implements SurfaceHolder.Callback {
 	}
 	
     private void initGameObjects()    {
-    	//add and load graphics
+    	//Graphics must be loaded before the GameManager is initialized
+    	GraphicsManager.addBitmap(R.drawable.megaman_walking);
+    	GraphicsManager.addBitmap(R.drawable.megaman_idle);
+    	GraphicsManager.load(this.getResources());
     	this.gameManager = new GameManager(this);
     }
     
     private void initInputs()
     {
-    	this.gestureDectector = new GestureDetector(new TouchInputManager());
+    	this.gestureDectector = new GestureDetector((OnGestureListener) new TouchInputManager());
     }
     
     public void doDraw(Canvas canvas) {
@@ -61,11 +61,13 @@ public class GameView extends GLSurfaceView implements SurfaceHolder.Callback {
 	
 	public void surfaceCreated(SurfaceHolder holder) {
 		//initialize screen dimension based varibles in engine
-    	
 	}
 	
 	public void surfaceDestroyed(SurfaceHolder holder) {
 	}
 	
-	
+	public boolean onTouchEvent(MotionEvent evt)    {
+    	this.gestureDectector.onTouchEvent(evt);
+    	return true;
+    }
 }

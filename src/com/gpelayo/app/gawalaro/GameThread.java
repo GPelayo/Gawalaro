@@ -1,6 +1,5 @@
 package com.gpelayo.app.gawalaro;
 
-
 import android.graphics.Canvas;
 
 public class GameThread extends Thread {

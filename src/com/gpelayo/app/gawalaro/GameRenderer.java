@@ -1,6 +1,4 @@
 package com.gpelayo.app.gawalaro;
-
-import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
 import android.opengl.*;
@@ -29,6 +27,13 @@ public class GameRenderer implements GLSurfaceView.Renderer{
 		gl.glEnable(GL10.GL_LEQUAL);
 		gl.glHint(GL10.GL_PERSPECTIVE_CORRECTION_HINT, GL10.GL_NICEST);
 		
+		
+	}
+
+	@Override
+	public void onSurfaceCreated(GL10 arg0,
+			javax.microedition.khronos.egl.EGLConfig arg1) {
+		// TODO Auto-generated method stub
 		
 	}
 	

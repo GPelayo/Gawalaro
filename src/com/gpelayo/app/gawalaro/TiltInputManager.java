@@ -6,11 +6,6 @@ public class TiltInputManager implements SensorEventListener{
 	public static float[] accelormenterValues, geomagneticMatrix;
 	public static boolean isReady = false;
 	
-	public void onAccuracyChanged(Sensor sensor, int accuracy) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	public void onSensorChanged(SensorEvent event) {
 		switch(event.sensor.getType())
 		{
@@ -21,6 +16,11 @@ public class TiltInputManager implements SensorEventListener{
 				isReady = true;
 		}
 		
+	}
+
+	@Override
+	public void onAccuracyChanged(Sensor arg0, int arg1) {
+		// TODO Auto-generated method stub
 	}
 		
 }

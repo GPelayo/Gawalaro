@@ -1,9 +1,9 @@
 package com.gpelayo.app.gawalaro;
 
-import com.gpelayo.app.gawalaro.gameObjects.Coordinate;
-
-import android.view.MotionEvent;
 import android.view.GestureDetector.SimpleOnGestureListener;
+import android.view.MotionEvent;
+
+import com.gpelayo.app.gawalaro.gameobjects.Coordinate;
 
 public class TouchInputManager extends SimpleOnGestureListener{
 	public static Coordinate touchLocation;

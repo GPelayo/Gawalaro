@@ -1,7 +1,7 @@
 package com.gpelayo.app.gawalaro;
 
 import android.app.Activity;
-import android.view.*;
+import android.view.Display;
 
 public class GlobalDisplayVariables {
 	
